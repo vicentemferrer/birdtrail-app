@@ -23,3 +23,8 @@ export interface BirdsGeoJSON {
 	type: 'FeatureCollection';
 	features: BirdObservations;
 }
+
+export interface Coords {
+	latitude: number;
+	longitude: number;
+}

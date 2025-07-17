@@ -1,9 +1,11 @@
 import { StyleSheet, View } from 'react-native';
-import MapView, { Geojson, Region } from 'react-native-maps';
+import { Region } from 'react-native-maps';
 
-import CustomMarker from '@/components/CustomMarker';
-import data from '@/data/birds.json';
-import { BirdsGeoJSON } from '@/lib/types';
+import CalloutProvider from '@/contexts/CalloutProvider';
+import useBirds from '@/hooks/useBirds';
+
+import CustomCallout from '@/components/CustomCallout';
+import Map from '@/components/Map';
 
 const mainRegion: Region = {
 	latitude: -42.65,
@@ -13,35 +15,14 @@ const mainRegion: Region = {
 };
 
 export default function App() {
+	const { birds } = useBirds();
+
 	return (
 		<View style={styles.container}>
-			<MapView provider='google' style={styles.map} region={mainRegion} initialRegion={mainRegion}>
-				<Geojson geojson={data as BirdsGeoJSON} markerComponent={<CustomMarker />} />
-				{/* {birds.map((bird: BirdObservationFeature, i) => (
-					<Marker
-						key={i}
-						coordinate={{
-							latitude: bird.geometry.coordinates[1],
-							longitude: bird.geometry.coordinates[0]
-						}}
-						calloutAnchor={{ x: 0.5, y: 0.4 }}>
-						<Callout>
-							<View
-								style={{
-									backgroundColor: 'white',
-									padding: 15,
-									borderRadius: 8,
-									borderColor: '#ddd',
-									borderWidth: 1,
-									minWidth: 200,
-									alignItems: 'center'
-								}}>
-								<Text style={{ fontSize: 16, fontWeight: 'bold' }}>Mi texto</Text>
-							</View>
-						</Callout>
-					</Marker>
-				))} */}
-			</MapView>
+			<CalloutProvider>
+				<Map currRegion={mainRegion} dataset={birds} />
+				<CustomCallout />
+			</CalloutProvider>
 		</View>
 	);
 }
@@ -49,9 +30,5 @@ export default function App() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1
-	},
-	map: {
-		width: '100%',
-		height: '100%'
 	}
 });
