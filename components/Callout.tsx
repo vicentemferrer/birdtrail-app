@@ -4,6 +4,8 @@ import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { CalloutContext } from '@/contexts/context';
 
+import { COLORS } from '@/lib/constants';
+
 import Icon, { IconComponentType } from './Icon';
 
 export default function Callout() {
@@ -23,7 +25,7 @@ export default function Callout() {
 											IconComponent={MaterialIcons as IconComponentType}
 											iconName='location-on'
 											iconSize={12}
-											iconColor='#6B7280'
+											iconColor={COLORS.softBlue}
 										/>
 										<Text style={styles.location}>{selectedMarker?.properties.location}</Text>
 									</View>
@@ -31,14 +33,14 @@ export default function Callout() {
 								<Pressable
 									style={styles.closeButton}
 									onPress={closeCallout}
-									android_ripple={{ color: '#E5E7EB', borderless: true }}>
+									android_ripple={{ color: `${COLORS.paperCream}80`, borderless: true }}>
 									<Text style={styles.closeButtonText}>✕</Text>
 								</Pressable>
 							</View>
 
 							<View style={styles.infoContainer}>
 								<View style={styles.infoItem}>
-									<Ionicons name='eye' size={12} color='#6B7280' />
+									<Ionicons name='eye' size={12} color={COLORS.woodBrown} />
 									<Text style={styles.infoText}>{selectedMarker?.properties.observer}</Text>
 								</View>
 								<View style={styles.infoItem}>
@@ -46,7 +48,7 @@ export default function Callout() {
 										IconComponent={MaterialIcons as IconComponentType}
 										iconName='schedule'
 										iconSize={12}
-										iconColor='#6B7280'
+										iconColor={COLORS.woodBrown}
 									/>
 									<Text style={styles.infoText}>{selectedMarker?.properties.time}</Text>
 								</View>
@@ -68,7 +70,9 @@ export default function Callout() {
 										{selectedMarker?.properties.verified ? 'Verified' : 'Pending'}
 									</Text>
 								</View>
-								<Pressable style={styles.detailsButton} android_ripple={{ color: '#81D4FA20' }}>
+								<Pressable
+									style={styles.detailsButton}
+									android_ripple={{ color: `${COLORS.softBlue}20` }}>
 									<Text style={styles.detailsButtonText}>See details</Text>
 								</Pressable>
 							</View>
@@ -90,10 +94,10 @@ const styles = StyleSheet.create({
 		padding: 16
 	},
 	card: {
-		backgroundColor: 'rgba(255, 255, 255, 0.95)',
+		backgroundColor: `${COLORS.paperCream}F5`,
 		borderRadius: 12,
 		borderWidth: 1,
-		borderColor: '#F5F5DC',
+		borderColor: COLORS.paperCream,
 		shadowColor: '#000',
 		shadowOffset: {
 			width: 0,
@@ -118,7 +122,7 @@ const styles = StyleSheet.create({
 	species: {
 		fontSize: 18,
 		fontWeight: '600',
-		color: '#558B2F',
+		color: COLORS.mossGreen,
 		marginBottom: 4
 	},
 	locationContainer: {
@@ -128,7 +132,7 @@ const styles = StyleSheet.create({
 	},
 	location: {
 		fontSize: 14,
-		color: '#6B7280'
+		color: COLORS.woodBrown
 	},
 	closeButton: {
 		padding: 8,
@@ -140,7 +144,7 @@ const styles = StyleSheet.create({
 	},
 	closeButtonText: {
 		fontSize: 16,
-		color: '#9CA3AF',
+		color: COLORS.earth,
 		fontWeight: '500'
 	},
 	infoContainer: {
@@ -156,7 +160,7 @@ const styles = StyleSheet.create({
 	},
 	infoText: {
 		fontSize: 14,
-		color: '#6B7280'
+		color: COLORS.woodBrown
 	},
 	footer: {
 		flexDirection: 'row',
@@ -169,32 +173,32 @@ const styles = StyleSheet.create({
 		borderRadius: 20
 	},
 	badgeVerified: {
-		backgroundColor: '#558B2F'
+		backgroundColor: COLORS.mossGreen
 	},
 	badgePending: {
-		backgroundColor: '#8D6E63'
+		backgroundColor: COLORS.earth
 	},
 	badgeText: {
 		fontSize: 12,
 		fontWeight: '500'
 	},
 	badgeTextVerified: {
-		color: '#FFFFFF'
+		color: COLORS.white
 	},
 	badgeTextPending: {
-		color: '#FFFFFF'
+		color: COLORS.white
 	},
 	detailsButton: {
 		paddingHorizontal: 16,
 		paddingVertical: 8,
 		borderRadius: 8,
 		borderWidth: 1,
-		borderColor: '#81D4FA',
-		backgroundColor: 'transparent'
+		borderColor: COLORS.softBlue,
+		backgroundColor: COLORS.transparent
 	},
 	detailsButtonText: {
 		fontSize: 14,
-		color: '#6D4C41',
+		color: COLORS.woodBrown,
 		fontWeight: '500'
 	}
 });
