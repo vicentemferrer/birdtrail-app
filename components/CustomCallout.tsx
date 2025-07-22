@@ -8,42 +8,43 @@ export default function CustomCallout() {
 	const { selectedMarker, calloutVisible, closeCallout } = useContext(CalloutContext);
 
 	return (
-		<Modal visible={calloutVisible} transparent>
-			<View style={styles.container}>
-				<View style={styles.card}>
-					<View style={styles.cardContent}>
-						{/* Header con título y botón cerrar */}
-						<View style={styles.header}>
-							<View style={styles.titleContainer}>
-								<Text style={styles.species}>{selectedMarker?.properties.species}</Text>
-								{/* <View style={styles.locationContainer}>
+		<Modal visible={calloutVisible} animationType='slide' onRequestClose={closeCallout} transparent>
+			<Pressable onPress={closeCallout} style={{ flex: 1 }}>
+				<View style={styles.container}>
+					<View style={styles.card}>
+						<View style={styles.cardContent}>
+							{/* Header con título y botón cerrar */}
+							<View style={styles.header}>
+								<View style={styles.titleContainer}>
+									<Text style={styles.species}>{selectedMarker?.properties.species}</Text>
+									{/* <View style={styles.locationContainer}>
                 <MapPin size={12} color="#6B7280" />
                 <Text style={styles.location}>{selectedMarker}</Text>
               </View> */}
+								</View>
+								<Pressable
+									style={styles.closeButton}
+									onPress={closeCallout}
+									android_ripple={{ color: '#E5E7EB', borderless: true }}>
+									<Text style={styles.closeButtonText}>✕</Text>
+								</Pressable>
 							</View>
-							<Pressable
-								style={styles.closeButton}
-								onPress={closeCallout}
-								android_ripple={{ color: '#E5E7EB', borderless: true }}>
-								<Text style={styles.closeButtonText}>✕</Text>
-							</Pressable>
-						</View>
 
-						{/* Información del observador y tiempo */}
-						<View style={styles.infoContainer}>
-							<View style={styles.infoItem}>
-								<Ionicons name='eye' size={12} color='#6B7280' />
-								<Text style={styles.infoText}>{selectedMarker?.properties.observer}</Text>
-							</View>
-							{/* <View style={styles.infoItem}>
+							{/* Información del observador y tiempo */}
+							<View style={styles.infoContainer}>
+								<View style={styles.infoItem}>
+									<Ionicons name='eye' size={12} color='#6B7280' />
+									<Text style={styles.infoText}>{selectedMarker?.properties.observer}</Text>
+								</View>
+								{/* <View style={styles.infoItem}>
               <Clock size={12} color="#6B7280" />
               <Text style={styles.infoText}>{selectedSighting.time}</Text>
             </View> */}
-						</View>
+							</View>
 
-						{/* Footer con badge y botón */}
-						<View style={styles.footer}>
-							{/* <View style={[
+							{/* Footer con badge y botón */}
+							<View style={styles.footer}>
+								{/* <View style={[
               styles.badge,
               selectedSighting.verified ? styles.badgeVerified : styles.badgePending
             ]}>
@@ -54,13 +55,14 @@ export default function CustomCallout() {
                 {selectedSighting.verified ? "Verificado" : "Pendiente"}
               </Text>
             </View> */}
-							<Pressable style={styles.detailsButton} android_ripple={{ color: '#81D4FA20' }}>
-								<Text style={styles.detailsButtonText}>See details</Text>
-							</Pressable>
+								<Pressable style={styles.detailsButton} android_ripple={{ color: '#81D4FA20' }}>
+									<Text style={styles.detailsButtonText}>See details</Text>
+								</Pressable>
+							</View>
 						</View>
 					</View>
 				</View>
-			</View>
+			</Pressable>
 		</Modal>
 	);
 }

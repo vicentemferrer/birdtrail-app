@@ -1,24 +1,25 @@
 import { useState } from 'react';
 
 import { BirdObservationFeature } from '@/lib/types';
+import useModal from './useModal';
 
 export default function useMarkerData() {
 	const [selectedMarker, setSelectedMarker] = useState<BirdObservationFeature | null>(null);
-	const [calloutVisible, setCalloutVisible] = useState<boolean>(false);
+	const { isVisible, openModal, closeModal } = useModal();
 
 	const handleMarkerPress = (feature: BirdObservationFeature) => {
 		setSelectedMarker(feature);
-		setCalloutVisible(true);
+		openModal();
 	};
 
 	const closeCallout = () => {
-		setCalloutVisible(false);
+		closeModal();
 		setSelectedMarker(null);
 	};
 
 	return {
 		selectedMarker,
-		calloutVisible,
+		calloutVisible: isVisible,
 		handleMarkerPress,
 		closeCallout
 	};
