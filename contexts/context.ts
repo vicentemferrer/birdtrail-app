@@ -1,5 +1,6 @@
-import { BirdObservationFeature } from '@/lib/types';
 import { createContext, Dispatch, SetStateAction } from 'react';
+
+import { BirdObservationFeature, BirdObservations } from '@/lib/types';
 
 interface ICalloutContext {
 	selectedMarker: BirdObservationFeature | null;
@@ -9,6 +10,8 @@ interface ICalloutContext {
 }
 
 interface IFiltersContext {
+	filteredBirds: BirdObservations;
+	species: string[];
 	selectedSpecies: string;
 	setSelectedSpecies: Dispatch<SetStateAction<string>>;
 }

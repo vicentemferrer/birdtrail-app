@@ -1,10 +1,12 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useContext } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { CalloutContext } from '@/contexts/context';
 
-export default function CustomCallout() {
+import Icon, { IconComponentType } from './Icon';
+
+export default function Callout() {
 	const { selectedMarker, calloutVisible, closeCallout } = useContext(CalloutContext);
 
 	return (
@@ -13,14 +15,18 @@ export default function CustomCallout() {
 				<View style={styles.container}>
 					<View style={styles.card}>
 						<View style={styles.cardContent}>
-							{/* Header con título y botón cerrar */}
 							<View style={styles.header}>
 								<View style={styles.titleContainer}>
 									<Text style={styles.species}>{selectedMarker?.properties.species}</Text>
-									{/* <View style={styles.locationContainer}>
-                <MapPin size={12} color="#6B7280" />
-                <Text style={styles.location}>{selectedMarker}</Text>
-              </View> */}
+									<View style={styles.locationContainer}>
+										<Icon
+											IconComponent={MaterialIcons as IconComponentType}
+											iconName='location-on'
+											iconSize={12}
+											iconColor='#6B7280'
+										/>
+										<Text style={styles.location}>{selectedMarker?.properties.location}</Text>
+									</View>
 								</View>
 								<Pressable
 									style={styles.closeButton}
@@ -30,31 +36,38 @@ export default function CustomCallout() {
 								</Pressable>
 							</View>
 
-							{/* Información del observador y tiempo */}
 							<View style={styles.infoContainer}>
 								<View style={styles.infoItem}>
 									<Ionicons name='eye' size={12} color='#6B7280' />
 									<Text style={styles.infoText}>{selectedMarker?.properties.observer}</Text>
 								</View>
-								{/* <View style={styles.infoItem}>
-              <Clock size={12} color="#6B7280" />
-              <Text style={styles.infoText}>{selectedSighting.time}</Text>
-            </View> */}
+								<View style={styles.infoItem}>
+									<Icon
+										IconComponent={MaterialIcons as IconComponentType}
+										iconName='schedule'
+										iconSize={12}
+										iconColor='#6B7280'
+									/>
+									<Text style={styles.infoText}>{selectedMarker?.properties.time}</Text>
+								</View>
 							</View>
 
-							{/* Footer con badge y botón */}
 							<View style={styles.footer}>
-								{/* <View style={[
-              styles.badge,
-              selectedSighting.verified ? styles.badgeVerified : styles.badgePending
-            ]}>
-              <Text style={[
-                styles.badgeText,
-                selectedSighting.verified ? styles.badgeTextVerified : styles.badgeTextPending
-              ]}>
-                {selectedSighting.verified ? "Verificado" : "Pendiente"}
-              </Text>
-            </View> */}
+								<View
+									style={[
+										styles.badge,
+										selectedMarker?.properties.verified ? styles.badgeVerified : styles.badgePending
+									]}>
+									<Text
+										style={[
+											styles.badgeText,
+											selectedMarker?.properties.verified
+												? styles.badgeTextVerified
+												: styles.badgeTextPending
+										]}>
+										{selectedMarker?.properties.verified ? 'Verified' : 'Pending'}
+									</Text>
+								</View>
 								<Pressable style={styles.detailsButton} android_ripple={{ color: '#81D4FA20' }}>
 									<Text style={styles.detailsButtonText}>See details</Text>
 								</Pressable>

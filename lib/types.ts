@@ -1,9 +1,12 @@
 export interface BirdObservationProperties {
 	species: string;
 	date: string;
+	time: string;
 	observer: string;
+	location: string;
 	notes?: string;
 	imgUrl?: string;
+	verified: boolean;
 }
 
 export interface PointGeometry {

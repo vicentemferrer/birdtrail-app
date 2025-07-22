@@ -4,8 +4,11 @@ import { Dimensions, Modal, Pressable, ScrollView, StyleSheet, Text, View } from
 
 import { FiltersContext } from '@/contexts/context';
 import useModal from '@/hooks/useModal';
-import Button from './Button';
+
+import { COLORS } from '@/lib/constants';
 import Icon, { IconComponentType } from './Icon';
+
+import Button from './Button';
 
 const { width } = Dimensions.get('window');
 
@@ -32,32 +35,37 @@ export default function Filters({ dataset }: Props) {
 				<Pressable style={styles.overlay} onPress={closeModal}>
 					<View style={styles.modal}>
 						<View style={styles.modalHeader}>
-							<Text style={styles.modalTitle}>Select Category</Text>
+							<Text style={styles.modalTitle}>Select Species</Text>
 							<Pressable style={styles.closeButton} onPress={closeModal}>
-								<FontAwesome5 name='times' size={24} color='#666666' />
+								<FontAwesome5 name='times' size={24} color={COLORS.woodBrown} />
 							</Pressable>
 						</View>
 
-						<ScrollView style={styles.categoriesList}>
-							<Pressable style={[styles.categoryItem]} onPress={() => handleSelect('')}>
-								<View style={styles.categoryContent}>
-									<Text style={styles.categoryText}>All</Text>
+						<ScrollView style={styles.speciesList}>
+							<Pressable
+								style={[styles.speciesItem, selectedSpecies === '' && styles.speciesItemSelected]}
+								onPress={() => handleSelect('')}>
+								<View style={styles.speciesContent}>
+									<Text style={styles.speciesText}>All</Text>
 								</View>
+								{selectedSpecies === '' && (
+									<FontAwesome5 name='check' size={20} color={COLORS.mossGreen} />
+								)}
 							</Pressable>
 
 							{dataset.map((specie, i) => (
 								<Pressable
 									key={i}
 									style={[
-										styles.categoryItem,
-										selectedSpecies === specie && styles.categoryItemSelected
+										styles.speciesItem,
+										selectedSpecies === specie && styles.speciesItemSelected
 									]}
 									onPress={() => handleSelect(specie)}>
-									<View style={styles.categoryContent}>
-										<Text style={styles.categoryText}>{specie}</Text>
+									<View style={styles.speciesContent}>
+										<Text style={styles.speciesText}>{specie}</Text>
 									</View>
 									{selectedSpecies === specie && (
-										<FontAwesome5 name='check' size={20} color='#3A5BA0' />
+										<FontAwesome5 name='check' size={20} color={COLORS.mossGreen} />
 									)}
 								</Pressable>
 							))}
@@ -82,32 +90,32 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: '#E5E5E5',
 		borderRadius: 8,
-		backgroundColor: '#FFFFFF',
+		backgroundColor: COLORS.white,
 		minHeight: 48
 	},
 	selectorError: {
-		borderColor: '#E53E3E'
+		borderColor: COLORS.earth
 	},
 	selectorContent: {
 		flex: 1
 	},
-	selectedCategory: {
+	selectedSpecies: {
 		flexDirection: 'row',
 		alignItems: 'center',
 		gap: 8
 	},
-	selectedCategoryText: {
+	selectedSpeciesText: {
 		fontSize: 16,
-		color: '#333333',
+		color: COLORS.woodBrown,
 		fontWeight: '500'
 	},
 	placeholder: {
 		fontSize: 16,
-		color: '#A0A0A0'
+		color: COLORS.earthLight
 	},
 	errorText: {
 		fontSize: 14,
-		color: '#E53E3E',
+		color: COLORS.earth,
 		marginTop: 4,
 		marginLeft: 4
 	},
@@ -118,7 +126,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	modal: {
-		backgroundColor: '#FFFFFF',
+		backgroundColor: COLORS.paperCream,
 		borderRadius: 12,
 		width: width * 0.85,
 		maxHeight: '70%',
@@ -136,39 +144,39 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 		paddingVertical: 16,
 		borderBottomWidth: 1,
-		borderBottomColor: '#F0F0F0'
+		borderBottomColor: COLORS.earthLight
 	},
 	modalTitle: {
 		fontSize: 18,
 		fontWeight: '600',
-		color: '#3A5BA0'
+		color: COLORS.mossGreen
 	},
 	closeButton: {
 		padding: 4
 	},
-	categoriesList: {
+	speciesList: {
 		maxHeight: 300
 	},
-	categoryItem: {
+	speciesItem: {
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		paddingHorizontal: 20,
 		paddingVertical: 16,
 		borderBottomWidth: 1,
-		borderBottomColor: '#F5F5F5'
+		borderBottomColor: COLORS.earthLight
 	},
-	categoryItemSelected: {
-		backgroundColor: '#F0F4FF'
+	speciesItemSelected: {
+		backgroundColor: COLORS.softBlueLight
 	},
-	categoryContent: {
+	speciesContent: {
 		flexDirection: 'row',
 		alignItems: 'center',
 		gap: 12
 	},
-	categoryText: {
+	speciesText: {
 		fontSize: 16,
-		color: '#333333',
+		color: COLORS.woodBrown,
 		fontWeight: '500'
 	}
 });

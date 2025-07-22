@@ -1,6 +1,7 @@
-import { COLORS } from '@/lib/constants';
 import { ReactNode } from 'react';
 import { Pressable, StyleSheet, ViewStyle } from 'react-native';
+
+import { COLORS } from '@/lib/constants';
 
 interface Props {
 	variant?: 'primary' | 'outline' | 'secondary' | 'interactive';

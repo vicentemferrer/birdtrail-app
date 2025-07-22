@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { BirdObservationFeature } from '@/lib/types';
+
 import useModal from './useModal';
 
 export default function useMarkerData() {

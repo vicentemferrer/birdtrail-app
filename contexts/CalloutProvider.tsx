@@ -1,5 +1,6 @@
-import useMarkerData from '@/hooks/useMarkerData';
 import { ReactNode } from 'react';
+
+import useMarkerData from '@/hooks/useMarkerData';
 import { CalloutContext } from './context';
 
 type Props = {

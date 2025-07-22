@@ -1,6 +1,7 @@
-import FiltersProvider from '@/contexts/FiltersProvider';
 import { Stack } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import FiltersProvider from '@/contexts/FiltersProvider';
 
 export default function RootLayout() {
 	return (

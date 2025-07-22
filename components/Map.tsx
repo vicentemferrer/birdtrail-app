@@ -29,6 +29,7 @@ export default function Map({ currRegion, dataset }: Props) {
 						longitude: bird.geometry.coordinates[0]
 					}}
 					onPress={handleMarkerPress.bind(null, bird)}
+					verified={bird.properties.verified}
 				/>
 			))}
 		</MapView>

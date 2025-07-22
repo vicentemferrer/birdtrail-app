@@ -6,7 +6,10 @@
 			"properties": {
 				"species": "Southern Lapwing",
 				"date": "2024-05-11",
-				"observer": "Pablo Araya"
+				"time": "08:15",
+				"observer": "Pablo Araya",
+				"location": "Purranque Wetlands",
+				"verified": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -18,7 +21,10 @@
 			"properties": {
 				"species": "Brown-hooded Gull",
 				"date": "2024-10-02",
-				"observer": "Ignacio Fuentes"
+				"time": "14:30",
+				"observer": "Ignacio Fuentes",
+				"location": "Llanquihue Lake Shore",
+				"verified": false
 			},
 			"geometry": {
 				"type": "Point",
@@ -30,7 +36,10 @@
 			"properties": {
 				"species": "Kelp Gull",
 				"date": "2024-05-07",
-				"observer": "Matias Gutierrez"
+				"time": "07:45",
+				"observer": "Matias Gutierrez",
+				"location": "Coastal Rocks",
+				"verified": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -42,7 +51,10 @@
 			"properties": {
 				"species": "Ringed Kingfisher",
 				"date": "2024-03-10",
-				"observer": "Matias Gutierrez"
+				"time": "16:20",
+				"observer": "Matias Gutierrez",
+				"location": "Rio Negro Bridge",
+				"verified": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -54,7 +66,10 @@
 			"properties": {
 				"species": "Chimango Caracara",
 				"date": "2024-08-21",
-				"observer": "Sofia Navarro"
+				"time": "11:05",
+				"observer": "Sofia Navarro",
+				"location": "Llanquihue Lake Shore",
+				"verified": false
 			},
 			"geometry": {
 				"type": "Point",
@@ -66,7 +81,10 @@
 			"properties": {
 				"species": "Ochre-flanked Tapaculo",
 				"date": "2024-04-11",
-				"observer": "Lucas Alvarado"
+				"time": "06:30",
+				"observer": "Lucas Alvarado",
+				"location": "Native Forest Trail",
+				"verified": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -78,7 +96,10 @@
 			"properties": {
 				"species": "Magellanic Tapaculo",
 				"date": "2024-10-10",
-				"observer": "Carla Espinoza"
+				"time": "09:50",
+				"observer": "Carla Espinoza",
+				"location": "Mountain Slope",
+				"verified": false
 			},
 			"geometry": {
 				"type": "Point",
@@ -90,7 +111,10 @@
 			"properties": {
 				"species": "Dark-bellied Cinclodes",
 				"date": "2024-01-23",
-				"observer": "Daniel Martinez"
+				"time": "13:15",
+				"observer": "Daniel Martinez",
+				"location": "Purranque Wetlands",
+				"verified": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -102,7 +126,10 @@
 			"properties": {
 				"species": "Patagonian Sierra Finch",
 				"date": "2024-01-24",
-				"observer": "Sofia Navarro"
+				"time": "15:40",
+				"observer": "Sofia Navarro",
+				"location": "Highland Meadow",
+				"verified": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -114,7 +141,10 @@
 			"properties": {
 				"species": "Diuca Finch",
 				"date": "2024-08-17",
-				"observer": "Ignacio Fuentes"
+				"time": "10:25",
+				"observer": "Ignacio Fuentes",
+				"location": "Mountain Slope",
+				"verified": false
 			},
 			"geometry": {
 				"type": "Point",
@@ -126,7 +156,10 @@
 			"properties": {
 				"species": "Black-necked Swan",
 				"date": "2024-03-11",
-				"observer": "Daniel Martinez"
+				"time": "07:20",
+				"observer": "Daniel Martinez",
+				"location": "Native Forest Trail",
+				"verified": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -138,7 +171,10 @@
 			"properties": {
 				"species": "Flightless Steamer-Duck",
 				"date": "2024-09-24",
-				"observer": "Carla Espinoza"
+				"time": "12:10",
+				"observer": "Carla Espinoza",
+				"location": "Purranque Wetlands",
+				"verified": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -150,7 +186,10 @@
 			"properties": {
 				"species": "Yellow-billed Pintail",
 				"date": "2024-06-22",
-				"observer": "Lucas Alvarado"
+				"time": "17:35",
+				"observer": "Lucas Alvarado",
+				"location": "Coastal Lagoon",
+				"verified": false
 			},
 			"geometry": {
 				"type": "Point",
@@ -162,7 +201,10 @@
 			"properties": {
 				"species": "Yellow-billed Teal",
 				"date": "2024-02-14",
-				"observer": "Matias Gutierrez"
+				"time": "08:55",
+				"observer": "Matias Gutierrez",
+				"location": "Llanquihue Lake Shore",
+				"verified": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -174,7 +216,10 @@
 			"properties": {
 				"species": "Plumbeous Rail",
 				"date": "2024-06-23",
-				"observer": "Matias Gutierrez"
+				"time": "05:45",
+				"observer": "Matias Gutierrez",
+				"location": "Marsh Edge",
+				"verified": false
 			},
 			"geometry": {
 				"type": "Point",
@@ -186,7 +231,10 @@
 			"properties": {
 				"species": "American Oystercatcher",
 				"date": "2024-06-18",
-				"observer": "Lucas Alvarado"
+				"time": "14:15",
+				"observer": "Lucas Alvarado",
+				"location": "Mountain Slope",
+				"verified": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -198,7 +246,10 @@
 			"properties": {
 				"species": "Blackish Oystercatcher",
 				"date": "2024-05-28",
-				"observer": "Camila Soto"
+				"time": "09:30",
+				"observer": "Camila Soto",
+				"location": "Highland Meadow",
+				"verified": false
 			},
 			"geometry": {
 				"type": "Point",
@@ -210,7 +261,10 @@
 			"properties": {
 				"species": "Rufous-chested Dotterel",
 				"date": "2024-05-19",
-				"observer": "Ignacio Fuentes"
+				"time": "16:45",
+				"observer": "Ignacio Fuentes",
+				"location": "Native Forest Trail",
+				"verified": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -222,7 +276,10 @@
 			"properties": {
 				"species": "Whimbrel",
 				"date": "2024-01-16",
-				"observer": "Pablo Araya"
+				"time": "11:20",
+				"observer": "Pablo Araya",
+				"location": "Coastal Rocks",
+				"verified": false
 			},
 			"geometry": {
 				"type": "Point",
@@ -234,7 +291,10 @@
 			"properties": {
 				"species": "Hudsonian Godwit",
 				"date": "2024-07-06",
-				"observer": "Carla Espinoza"
+				"time": "06:10",
+				"observer": "Carla Espinoza",
+				"location": "Marsh Edge",
+				"verified": true
 			},
 			"geometry": {
 				"type": "Point",

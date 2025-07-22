@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { features } from '@/data/birds.json';
 import { BirdObservations } from '@/lib/types';
+
+import { features } from '@/data/birds.json';
 
 export default function useBirds() {
 	const [birds, setBirds] = useState<BirdObservations>([] as BirdObservations);
