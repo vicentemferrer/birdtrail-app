@@ -11,11 +11,12 @@ type Props = {
 export default function FiltersProvider({ children }: Props) {
 	const { birds } = useBirds();
 
-	const { filteredBirds, species, selectedSpecies, setSelectedSpecies } = useFilters(birds);
+	const { filteredBirds, species, filters, shouldReset, setSelectedSpecies, resetFilters } =
+		useFilters(birds);
 
 	return (
 		<FiltersContext.Provider
-			value={{ filteredBirds, species, selectedSpecies, setSelectedSpecies }}>
+			value={{ filteredBirds, species, filters, shouldReset, setSelectedSpecies, resetFilters }}>
 			{children}
 		</FiltersContext.Provider>
 	);

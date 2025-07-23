@@ -1,4 +1,4 @@
-import { createContext, Dispatch, SetStateAction } from 'react';
+import { createContext } from 'react';
 
 import { BirdObservationFeature, BirdObservations } from '@/lib/types';
 
@@ -12,8 +12,12 @@ interface ICalloutContext {
 interface IFiltersContext {
 	filteredBirds: BirdObservations;
 	species: string[];
-	selectedSpecies: string;
-	setSelectedSpecies: Dispatch<SetStateAction<string>>;
+	filters: {
+		currSpecies: string;
+	};
+	shouldReset: boolean;
+	setSelectedSpecies: (p: string) => void;
+	resetFilters: () => void;
 }
 
 const CalloutContext = createContext({} as ICalloutContext);

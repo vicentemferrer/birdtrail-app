@@ -6,9 +6,9 @@ import { FiltersContext } from '@/contexts/context';
 import useModal from '@/hooks/useModal';
 
 import { COLORS } from '@/lib/constants';
-import Icon, { IconComponentType } from './Icon';
 
 import Button from './Button';
+import Icon, { IconComponentType } from './Icon';
 
 const { width } = Dimensions.get('window');
 
@@ -18,7 +18,7 @@ type Props = {
 
 export default function Filters({ dataset }: Props) {
 	const { isVisible, openModal, closeModal } = useModal();
-	const { selectedSpecies, setSelectedSpecies } = useContext(FiltersContext);
+	const { filters, shouldReset, setSelectedSpecies, resetFilters } = useContext(FiltersContext);
 
 	const handleSelect = (specie: string) => {
 		setSelectedSpecies(specie);
@@ -27,9 +27,29 @@ export default function Filters({ dataset }: Props) {
 
 	return (
 		<>
-			<Button variant='outline' size='icon' style={{ position: 'absolute' }} onPress={openModal}>
-				<Icon IconComponent={Ionicons as IconComponentType} iconName='filter'></Icon>
-			</Button>
+			<View
+				style={{
+					position: 'absolute',
+					gap: 10,
+					padding: 20,
+					right: 0
+				}}>
+				<Button variant='outline' size='icon' onPress={openModal}>
+					<Icon IconComponent={Ionicons as IconComponentType} iconName='filter' iconSize={24} />
+				</Button>
+
+				<Button
+					variant='outline'
+					size='icon'
+					style={{ display: shouldReset ? 'flex' : 'none' }}
+					onPress={resetFilters}>
+					<Icon
+						IconComponent={Ionicons as IconComponentType}
+						iconName='refresh-outline'
+						iconSize={24}
+					/>
+				</Button>
+			</View>
 
 			<Modal visible={isVisible} animationType='fade' transparent onRequestClose={closeModal}>
 				<Pressable style={styles.overlay} onPress={closeModal}>
@@ -43,12 +63,15 @@ export default function Filters({ dataset }: Props) {
 
 						<ScrollView style={styles.speciesList}>
 							<Pressable
-								style={[styles.speciesItem, selectedSpecies === '' && styles.speciesItemSelected]}
+								style={[
+									styles.speciesItem,
+									filters.currSpecies === '' && styles.speciesItemSelected
+								]}
 								onPress={() => handleSelect('')}>
 								<View style={styles.speciesContent}>
 									<Text style={styles.speciesText}>All</Text>
 								</View>
-								{selectedSpecies === '' && (
+								{filters.currSpecies === '' && (
 									<FontAwesome5 name='check' size={20} color={COLORS.mossGreen} />
 								)}
 							</Pressable>
@@ -58,13 +81,13 @@ export default function Filters({ dataset }: Props) {
 									key={i}
 									style={[
 										styles.speciesItem,
-										selectedSpecies === specie && styles.speciesItemSelected
+										filters.currSpecies === specie && styles.speciesItemSelected
 									]}
 									onPress={() => handleSelect(specie)}>
 									<View style={styles.speciesContent}>
 										<Text style={styles.speciesText}>{specie}</Text>
 									</View>
-									{selectedSpecies === specie && (
+									{filters.currSpecies === specie && (
 										<FontAwesome5 name='check' size={20} color={COLORS.mossGreen} />
 									)}
 								</Pressable>
@@ -78,9 +101,6 @@ export default function Filters({ dataset }: Props) {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		marginBottom: 16
-	},
 	selector: {
 		flexDirection: 'row',
 		alignItems: 'center',
