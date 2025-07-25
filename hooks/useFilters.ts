@@ -15,7 +15,7 @@ export default function useFilters(birds: BirdObservations) {
 			? birds.filter((bird) => bird.properties.species === filters.currSpecies)
 			: [...birds];
 
-	const species = Array.from(birdsSpecies);
+	const species = Array.from(birdsSpecies).sort();
 
 	const setSelectedSpecies = (newSpecies: string) => {
 		resetRef.current = newSpecies !== initialState.currSpecies;

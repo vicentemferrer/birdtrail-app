@@ -27,13 +27,7 @@ export default function Filters({ dataset }: Props) {
 
 	return (
 		<>
-			<View
-				style={{
-					position: 'absolute',
-					gap: 10,
-					padding: 20,
-					right: 0
-				}}>
+			<View style={styles.container}>
 				<Button variant='outline' size='icon' onPress={openModal}>
 					<Icon IconComponent={Ionicons as IconComponentType} iconName='filter' iconSize={24} />
 				</Button>
@@ -101,6 +95,12 @@ export default function Filters({ dataset }: Props) {
 }
 
 const styles = StyleSheet.create({
+	container: {
+		position: 'absolute',
+		gap: 10,
+		padding: 20,
+		right: 0
+	},
 	selector: {
 		flexDirection: 'row',
 		alignItems: 'center',

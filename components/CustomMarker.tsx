@@ -14,7 +14,7 @@ type Props = {
 export default function CustomMarker({ coordinate, onPress, verified = false }: Props) {
 	return (
 		<Marker coordinate={coordinate} onPress={onPress}>
-			<View style={{ position: 'relative' }}>
+			<View>
 				<View
 					style={[styles.marker, { backgroundColor: verified ? COLORS.mossGreen : COLORS.earth }]}>
 					<MaterialCommunityIcons name='bird' size={16} color={COLORS.white} />
