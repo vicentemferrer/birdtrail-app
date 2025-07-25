@@ -1,12 +1,19 @@
 import { useState } from 'react';
 
+import { Cluster } from '@/lib/clustering';
 import { BirdObservationFeature } from '@/lib/types';
 
 import useModal from './useModal';
 
 export default function useMarkerData() {
 	const [selectedMarker, setSelectedMarker] = useState<BirdObservationFeature | null>(null);
+	const [selectedCluster, setSelectedCluster] = useState<Cluster | null>(null);
 	const { isVisible, openModal, closeModal } = useModal();
+	const {
+		isVisible: isClusterModalVisible,
+		openModal: openClusterModal,
+		closeModal: closeClusterModal
+	} = useModal();
 
 	const handleMarkerPress = (feature: BirdObservationFeature) => {
 		setSelectedMarker(feature);
@@ -18,10 +25,24 @@ export default function useMarkerData() {
 		setSelectedMarker(null);
 	};
 
+	const handleClusterPress = (cluster: Cluster) => {
+		setSelectedCluster(cluster);
+		openClusterModal();
+	};
+
+	const closeClusterModalHandler = () => {
+		closeClusterModal();
+		setSelectedCluster(null);
+	};
+
 	return {
 		selectedMarker,
 		calloutVisible: isVisible,
 		handleMarkerPress,
-		closeCallout
+		closeCallout,
+		selectedCluster,
+		clusterModalVisible: isClusterModalVisible,
+		handleClusterPress,
+		closeClusterModal: closeClusterModalHandler
 	};
 }

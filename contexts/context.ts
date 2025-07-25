@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 
+import { Cluster } from '@/lib/clustering';
 import { BirdObservationFeature, BirdObservations } from '@/lib/types';
 
 interface ICalloutContext {
@@ -7,6 +8,10 @@ interface ICalloutContext {
 	calloutVisible: boolean;
 	handleMarkerPress: (feature: BirdObservationFeature) => void;
 	closeCallout: () => void;
+	selectedCluster: Cluster | null;
+	clusterModalVisible: boolean;
+	handleClusterPress: (cluster: Cluster) => void;
+	closeClusterModal: () => void;
 }
 
 interface IFiltersContext {

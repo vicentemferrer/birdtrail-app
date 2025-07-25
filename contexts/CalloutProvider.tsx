@@ -8,11 +8,29 @@ type Props = {
 };
 
 export default function CalloutProvider({ children }: Props) {
-	const { selectedMarker, calloutVisible, handleMarkerPress, closeCallout } = useMarkerData();
+	const {
+		selectedMarker,
+		calloutVisible,
+		handleMarkerPress,
+		closeCallout,
+		selectedCluster,
+		clusterModalVisible,
+		handleClusterPress,
+		closeClusterModal
+	} = useMarkerData();
 
 	return (
 		<CalloutContext.Provider
-			value={{ selectedMarker, calloutVisible, handleMarkerPress, closeCallout }}>
+			value={{
+				selectedMarker,
+				calloutVisible,
+				handleMarkerPress,
+				closeCallout,
+				selectedCluster,
+				clusterModalVisible,
+				handleClusterPress,
+				closeClusterModal
+			}}>
 			{children}
 		</CalloutContext.Provider>
 	);

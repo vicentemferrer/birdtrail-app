@@ -6,6 +6,7 @@ import CalloutProvider from '@/contexts/CalloutProvider';
 import { FiltersContext } from '@/contexts/context';
 
 import Callout from '@/components/Callout';
+import ClusterModalContainer from '@/components/ClusterModalContainer';
 import SafeView from '@/components/core/SafeView';
 import Filters from '@/components/Filters';
 import Map from '@/components/Map';
@@ -28,6 +29,7 @@ export default function App() {
 			<CalloutProvider>
 				<Map currRegion={mainRegion} dataset={filteredBirds} />
 				<Callout />
+				<ClusterModalContainer />
 			</CalloutProvider>
 		</SafeView>
 	);

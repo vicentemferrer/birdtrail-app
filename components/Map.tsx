@@ -23,7 +23,7 @@ export default function Map({
 	enableClustering = true,
 	clusterDistance = 5
 }: Props) {
-	const { handleMarkerPress } = useContext(CalloutContext);
+	const { handleMarkerPress, handleClusterPress } = useContext(CalloutContext);
 	const [currentRegion, setCurrentRegion] = useState<Region>(currRegion);
 
 	const { clusters, singleMarkers } = useClustering({
@@ -37,20 +37,8 @@ export default function Map({
 		setCurrentRegion(region);
 	};
 
-	const handleClusterPress = (event: MarkerPressEvent, cluster: Cluster) => {
-		const firstBird = cluster.points[0]?.feature;
-		if (firstBird) {
-			handleMarkerPress(firstBird);
-		}
-
-		// Alternativamente, podrías hacer zoom al área del cluster:
-		// const region = {
-		//   latitude: cluster.center.latitude,
-		//   longitude: cluster.center.longitude,
-		//   latitudeDelta: Math.abs(cluster.bounds.maxLat - cluster.bounds.minLat) * 1.2,
-		//   longitudeDelta: Math.abs(cluster.bounds.maxLng - cluster.bounds.minLng) * 1.2,
-		// };
-		// mapRef.current?.animateToRegion(region, 1000);
+	const onPress = (event: MarkerPressEvent, cluster: Cluster) => {
+		handleClusterPress(cluster);
 	};
 
 	return (
@@ -61,7 +49,7 @@ export default function Map({
 			initialRegion={currRegion}
 			onRegionChangeComplete={handleRegionChangeComplete}>
 			{clusters.map((cluster) => (
-				<ClusterMarker key={cluster.id} cluster={cluster} onPress={handleClusterPress} />
+				<ClusterMarker key={cluster.id} cluster={cluster} onPress={onPress} />
 			))}
 
 			{singleMarkers.map((bird: BirdObservationFeature, i) => (
