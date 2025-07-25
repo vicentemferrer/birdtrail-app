@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import { BirdObservations } from '@/lib/types';
+import { APIObservation } from '@/lib/types';
 
-import { features } from '@/data/birds.json';
+import data from '@/data/apiData.sample.json';
 
 export default function useBirds() {
-	const [birds, setBirds] = useState<BirdObservations>([] as BirdObservations);
+	const [birds, setBirds] = useState<APIObservation[]>([] as APIObservation[]);
 
 	useEffect(() => {
 		async function getBirds() {
-			setBirds(features as BirdObservations);
+			setBirds(data);
 		}
 
 		getBirds();

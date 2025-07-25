@@ -20,7 +20,7 @@ export default function ClusterMarker({ cluster, onPress }: Props) {
 		return 70;
 	};
 
-	const hasVerified = cluster.points.some((point) => point.feature.properties.verified);
+	const hasVerified = cluster.points.some((point) => point.feature.obsReviewed);
 
 	const clusterSize = getClusterSize(pointCount);
 	const borderRadius = clusterSize / 2;
@@ -44,9 +44,7 @@ export default function ClusterMarker({ cluster, onPress }: Props) {
 					]}>
 					<MaterialCommunityIcons name='bird' size={16} color={COLORS.white} />
 				</View>
-				<Text style={[styles.clusterText, { fontSize: Math.min(clusterSize * 0.25, 12) }]}>
-					{pointCount}
-				</Text>
+				<Text style={[styles.clusterText, { fontSize: 9 }]}>{pointCount}</Text>
 			</View>
 		</Marker>
 	);

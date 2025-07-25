@@ -1,21 +1,30 @@
 import { useRef, useState } from 'react';
 
-import { BirdObservations } from '@/lib/types';
+import { APIObservation, SpeciesOption } from '@/lib/types';
 
 const initialState = { currSpecies: '' };
 
-export default function useFilters(birds: BirdObservations) {
+export default function useFilters(birds: APIObservation[]) {
 	const [filters, setFilters] = useState<typeof initialState>(initialState);
 	const resetRef = useRef<boolean>(false);
 
-	const birdsSpecies: Set<string> = new Set(birds.map((bird) => bird.properties.species));
+	const birdsSpeciesMap = new Map<string, SpeciesOption>();
+
+	birds.forEach((bird) => {
+		if (!birdsSpeciesMap.has(bird.speciesCode)) {
+			birdsSpeciesMap.set(bird.speciesCode, {
+				code: bird.speciesCode,
+				name: bird.comName
+			});
+		}
+	});
 
 	const filteredBirds =
 		filters.currSpecies.length !== 0
-			? birds.filter((bird) => bird.properties.species === filters.currSpecies)
+			? birds.filter((bird) => bird.speciesCode === filters.currSpecies)
 			: [...birds];
 
-	const species = Array.from(birdsSpecies).sort();
+	const species = Array.from(birdsSpeciesMap.values()).sort((a, b) => a.name.localeCompare(b.name));
 
 	const setSelectedSpecies = (newSpecies: string) => {
 		resetRef.current = newSpecies !== initialState.currSpecies;

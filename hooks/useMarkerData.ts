@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 import { Cluster } from '@/lib/clustering';
-import { BirdObservationFeature } from '@/lib/types';
+import { APIObservation } from '@/lib/types';
 
 import useModal from './useModal';
 
 export default function useMarkerData() {
-	const [selectedMarker, setSelectedMarker] = useState<BirdObservationFeature | null>(null);
+	const [selectedMarker, setSelectedMarker] = useState<APIObservation | null>(null);
 	const [selectedCluster, setSelectedCluster] = useState<Cluster | null>(null);
 	const { isVisible, openModal, closeModal } = useModal();
 	const {
@@ -15,7 +15,7 @@ export default function useMarkerData() {
 		closeModal: closeClusterModal
 	} = useModal();
 
-	const handleMarkerPress = (feature: BirdObservationFeature) => {
+	const handleMarkerPress = (feature: APIObservation) => {
 		setSelectedMarker(feature);
 		openModal();
 	};

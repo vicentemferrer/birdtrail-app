@@ -1,7 +1,8 @@
-import { BirdObservationFeature, Coords } from './types';
+import { getCoords } from './helpers';
+import { APIObservation, Coords } from './types';
 
 export interface ClusterPoint extends Coords {
-	feature: BirdObservationFeature;
+	feature: APIObservation;
 }
 
 export interface Cluster {
@@ -34,15 +35,14 @@ export function getZoomLevel(latitudeDelta: number, longitudeDelta: number): num
 }
 
 export function clusterMarkers(
-	birds: BirdObservationFeature[],
+	birds: APIObservation[],
 	minDistance: number = 40,
 	zoom: number = 10
 ): Cluster[] {
 	if (birds.length === 0) return [];
 
 	const points: ClusterPoint[] = birds.map((bird) => ({
-		latitude: bird.geometry.coordinates[1],
-		longitude: bird.geometry.coordinates[0],
+		...getCoords(bird),
 		feature: bird
 	}));
 

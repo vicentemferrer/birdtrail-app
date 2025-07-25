@@ -6,6 +6,7 @@ import { FiltersContext } from '@/contexts/context';
 import useModal from '@/hooks/useModal';
 
 import { COLORS } from '@/lib/constants';
+import { SpeciesOption } from '@/lib/types';
 
 import Button from './Button';
 import Icon, { IconComponentType } from './Icon';
@@ -13,7 +14,7 @@ import Icon, { IconComponentType } from './Icon';
 const { width } = Dimensions.get('window');
 
 type Props = {
-	dataset: string[];
+	dataset: SpeciesOption[];
 };
 
 export default function Filters({ dataset }: Props) {
@@ -70,18 +71,18 @@ export default function Filters({ dataset }: Props) {
 								)}
 							</Pressable>
 
-							{dataset.map((specie, i) => (
+							{dataset.map((specie) => (
 								<Pressable
-									key={i}
+									key={specie.code}
 									style={[
 										styles.speciesItem,
-										filters.currSpecies === specie && styles.speciesItemSelected
+										filters.currSpecies === specie.code && styles.speciesItemSelected
 									]}
-									onPress={() => handleSelect(specie)}>
+									onPress={() => handleSelect(specie.code)}>
 									<View style={styles.speciesContent}>
-										<Text style={styles.speciesText}>{specie}</Text>
+										<Text style={styles.speciesText}>{specie.name}</Text>
 									</View>
-									{filters.currSpecies === specie && (
+									{filters.currSpecies === specie.code && (
 										<FontAwesome5 name='check' size={20} color={COLORS.mossGreen} />
 									)}
 								</Pressable>

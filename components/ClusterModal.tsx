@@ -3,25 +3,25 @@ import { FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react
 
 import { Cluster } from '@/lib/clustering';
 import { COLORS } from '@/lib/constants';
-import { parseDate } from '@/lib/helpers';
-import { BirdObservationFeature } from '@/lib/types';
+import { parseDate, parseTime } from '@/lib/helpers';
+import { APIObservation } from '@/lib/types';
 
 type Props = {
 	visible: boolean;
 	cluster: Cluster | null;
 	onClose: () => void;
-	onSelectBird: (bird: BirdObservationFeature) => void;
+	onSelectBird: (bird: APIObservation) => void;
 };
 
 export default function ClusterModal({ visible, cluster, onClose, onSelectBird }: Props) {
 	if (!cluster) return null;
 
 	const orderedPoints = [...cluster.points].sort((a, b) =>
-		new Date(a.feature.properties.date) < new Date(b.feature.properties.date) ? 0 : -1
+		new Date(a.feature.obsDt) < new Date(b.feature.obsDt) ? 0 : -1
 	);
 
 	const renderBirdItem = ({ item }: { item: any }) => {
-		const bird = item.feature;
+		const bird: APIObservation = item.feature;
 		return (
 			<TouchableOpacity
 				style={styles.birdItem}
@@ -33,18 +33,17 @@ export default function ClusterModal({ visible, cluster, onClose, onSelectBird }
 					<MaterialCommunityIcons
 						name='bird'
 						size={20}
-						color={bird.properties.verified ? COLORS.mossGreen : COLORS.earth}
+						color={bird.obsReviewed ? COLORS.mossGreen : COLORS.earth}
 					/>
-					<Text style={styles.speciesText}>{bird.properties.species}</Text>
-					{bird.properties.verified && (
+					<Text style={styles.speciesText}>{bird.comName}</Text>
+					{bird.obsReviewed && (
 						<MaterialCommunityIcons name='check-circle' size={16} color={COLORS.mossGreen} />
 					)}
 				</View>
-				<Text style={styles.observerText}>By: {bird.properties.observer}</Text>
 				<Text style={styles.dateText}>
-					{parseDate(bird.properties.date)} - {bird.properties.time}
+					{parseDate(bird.obsDt)} - {parseTime(bird.obsDt)}
 				</Text>
-				<Text style={styles.locationText}>{bird.properties.location}</Text>
+				<Text style={styles.locationText}>{bird.locName}</Text>
 			</TouchableOpacity>
 		);
 	};

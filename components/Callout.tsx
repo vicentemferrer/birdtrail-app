@@ -5,6 +5,7 @@ import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { CalloutContext } from '@/contexts/context';
 
 import { COLORS } from '@/lib/constants';
+import { parseTime } from '@/lib/helpers';
 
 import Icon, { IconComponentType } from './Icon';
 
@@ -19,7 +20,7 @@ export default function Callout() {
 						<View style={styles.cardContent}>
 							<View style={styles.header}>
 								<View style={styles.titleContainer}>
-									<Text style={styles.species}>{selectedMarker?.properties.species}</Text>
+									<Text style={styles.species}>{selectedMarker?.comName}</Text>
 									<View style={styles.locationContainer}>
 										<Icon
 											IconComponent={MaterialIcons as IconComponentType}
@@ -27,7 +28,7 @@ export default function Callout() {
 											iconSize={12}
 											iconColor={COLORS.softBlue}
 										/>
-										<Text style={styles.location}>{selectedMarker?.properties.location}</Text>
+										<Text style={styles.location}>{selectedMarker?.locName}</Text>
 									</View>
 								</View>
 								<Pressable
@@ -41,7 +42,7 @@ export default function Callout() {
 							<View style={styles.infoContainer}>
 								<View style={styles.infoItem}>
 									<Ionicons name='eye' size={12} color={COLORS.woodBrown} />
-									<Text style={styles.infoText}>{selectedMarker?.properties.observer}</Text>
+									<Text style={styles.infoText}>{selectedMarker?.howMany}</Text>
 								</View>
 								<View style={styles.infoItem}>
 									<Icon
@@ -50,7 +51,7 @@ export default function Callout() {
 										iconSize={12}
 										iconColor={COLORS.woodBrown}
 									/>
-									<Text style={styles.infoText}>{selectedMarker?.properties.time}</Text>
+									<Text style={styles.infoText}>{parseTime(selectedMarker?.obsDt)}</Text>
 								</View>
 							</View>
 
@@ -58,16 +59,16 @@ export default function Callout() {
 								<View
 									style={[
 										styles.badge,
-										selectedMarker?.properties.verified ? styles.badgeVerified : styles.badgePending
+										selectedMarker?.obsReviewed ? styles.badgeVerified : styles.badgePending
 									]}>
 									<Text
 										style={[
 											styles.badgeText,
-											selectedMarker?.properties.verified
+											selectedMarker?.obsReviewed
 												? styles.badgeTextVerified
 												: styles.badgeTextPending
 										]}>
-										{selectedMarker?.properties.verified ? 'Verified' : 'Pending'}
+										{selectedMarker?.obsReviewed ? 'Verified' : 'Pending'}
 									</Text>
 								</View>
 								<Pressable

@@ -4,15 +4,17 @@ import MapView, { MarkerPressEvent, PROVIDER_GOOGLE, Region } from 'react-native
 
 import { CalloutContext } from '@/contexts/context';
 import useClustering from '@/hooks/useClustering';
+
 import { Cluster } from '@/lib/clustering';
-import { BirdObservationFeature, BirdObservations } from '@/lib/types';
+import { getCoords } from '@/lib/helpers';
+import { APIObservation } from '@/lib/types';
 
 import ClusterMarker from '@/components/ClusterMarker';
 import CustomMarker from '@/components/CustomMarker';
 
 type Props = {
 	currRegion: Region;
-	dataset: BirdObservations;
+	dataset: APIObservation[];
 	enableClustering?: boolean;
 	clusterDistance?: number;
 };
@@ -52,15 +54,12 @@ export default function Map({
 				<ClusterMarker key={cluster.id} cluster={cluster} onPress={onPress} />
 			))}
 
-			{singleMarkers.map((bird: BirdObservationFeature, i) => (
+			{singleMarkers.map((bird: APIObservation, i) => (
 				<CustomMarker
 					key={`single-${i}`}
-					coordinate={{
-						latitude: bird.geometry.coordinates[1],
-						longitude: bird.geometry.coordinates[0]
-					}}
+					coordinate={getCoords(bird)}
 					onPress={handleMarkerPress.bind(null, bird)}
-					verified={bird.properties.verified}
+					verified={bird.obsReviewed}
 				/>
 			))}
 		</MapView>

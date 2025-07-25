@@ -2,10 +2,10 @@ import { useMemo, useState } from 'react';
 import { Region } from 'react-native-maps';
 
 import { Cluster, clusterMarkers, filterClustersInRegion, getZoomLevel } from '@/lib/clustering';
-import { BirdObservationFeature } from '@/lib/types';
+import { APIObservation } from '@/lib/types';
 
 interface UseClusteringProps {
-	birds: BirdObservationFeature[];
+	birds: APIObservation[];
 	region: Region;
 	minDistance?: number;
 	enableClustering?: boolean;
@@ -13,7 +13,7 @@ interface UseClusteringProps {
 
 interface ClusteringState {
 	clusters: Cluster[];
-	singleMarkers: BirdObservationFeature[];
+	singleMarkers: APIObservation[];
 	isLoading: boolean;
 }
 

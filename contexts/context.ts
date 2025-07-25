@@ -1,12 +1,12 @@
 import { createContext } from 'react';
 
 import { Cluster } from '@/lib/clustering';
-import { BirdObservationFeature, BirdObservations } from '@/lib/types';
+import { APIObservation, SpeciesOption } from '@/lib/types';
 
 interface ICalloutContext {
-	selectedMarker: BirdObservationFeature | null;
+	selectedMarker: APIObservation | null;
 	calloutVisible: boolean;
-	handleMarkerPress: (feature: BirdObservationFeature) => void;
+	handleMarkerPress: (feature: APIObservation) => void;
 	closeCallout: () => void;
 	selectedCluster: Cluster | null;
 	clusterModalVisible: boolean;
@@ -15,8 +15,8 @@ interface ICalloutContext {
 }
 
 interface IFiltersContext {
-	filteredBirds: BirdObservations;
-	species: string[];
+	filteredBirds: APIObservation[];
+	species: SpeciesOption[];
 	filters: {
 		currSpecies: string;
 	};
