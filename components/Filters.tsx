@@ -10,6 +10,7 @@ import { SpeciesOption } from '@/lib/types';
 
 import Button from './Button';
 import Icon, { IconComponentType } from './Icon';
+import SubregionSelector from './SubregionSelector';
 
 const { width } = Dimensions.get('window');
 
@@ -32,6 +33,8 @@ export default function Filters({ dataset }: Props) {
 				<Button variant='outline' size='icon' onPress={openModal}>
 					<Icon IconComponent={Ionicons as IconComponentType} iconName='filter' iconSize={24} />
 				</Button>
+
+				<SubregionSelector />
 
 				<Button
 					variant='outline'

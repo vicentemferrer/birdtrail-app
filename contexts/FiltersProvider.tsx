@@ -9,14 +9,23 @@ type Props = {
 };
 
 export default function FiltersProvider({ children }: Props) {
-	const { birds } = useBirds();
+	const { birds, selectedSubregion, onSelect } = useBirds();
 
 	const { filteredBirds, species, filters, shouldReset, setSelectedSpecies, resetFilters } =
 		useFilters(birds);
 
 	return (
 		<FiltersContext.Provider
-			value={{ filteredBirds, species, filters, shouldReset, setSelectedSpecies, resetFilters }}>
+			value={{
+				filteredBirds,
+				species,
+				filters,
+				shouldReset,
+				selectedSubregion,
+				setSelectedSpecies,
+				resetFilters,
+				onSelect
+			}}>
 			{children}
 		</FiltersContext.Provider>
 	);
